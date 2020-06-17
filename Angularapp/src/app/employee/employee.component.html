@@ -1,0 +1,103 @@
+<div class="row">
+  <div class="col s12">
+    <div class="card">
+      <header><h1>Employee Appraisal System</h1></header>
+      <hr>
+      <h2>Form</h2>
+      <div class="card-content white-text">
+        <div class="row" >
+          <div id="allfield" class="col s12">
+            <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+              <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="employeeService.selectedEmployee._id">
+              <div class="row col s12">
+                <div class="input-field col s8">
+                  <input type="text" name="name" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.name" placeholder="Enter Your name" required>
+                  <label>Name :
+                    <label class="red-text">*</label>
+                  </label>
+                </div>
+              </div>
+              <div class="row col push s12">
+                <div class="input-field col s8">
+                  <input type="text" name="position" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.position" placeholder="Like Senior Developer" required>
+                  <label>Position :</label>
+                </div>
+              </div>
+              <div class="row col s12">
+                <div class="input-field col s8">
+                  <input type="text" name="office" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.office" placeholder="Enter office location" required>
+                  <label>Office :</label>
+                </div>
+              </div>
+              <div class="row col s12">
+                <div class="input-field col s8">
+                  <input type="text" name="salary" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.salary" placeholder="Salary per annum" required>
+                  <label>Salary :</label>
+                </div>
+              </div>
+
+              <div class="row col s12">
+                <div class="input-field col s8">
+                  <input type="text" name="department" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.department" placeholder="Department" required>
+                  <label>Department :</label>
+                </div>
+              </div>
+
+              <div class="row col s12">
+                <div class="input-field col s8">
+                  <input type="text" name="phone" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.phone" placeholder="Phone Number" >
+                  <label>Phone No. :</label>
+                </div>
+              </div>
+
+              <div class="row col s12">
+                <div class="input-field col s8">
+                  <input type="text" name="rating" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.rating" placeholder="Overall Rating of Employee">
+                  <label>Ratings :</label>
+                </div>
+              </div>
+
+
+              <div class="row col s7">
+                <div class="input-field col s7" id="submitreset">
+                  <button class="btn btn-custom right" type="button" (click)="resetForm(employeeForm)" id="Reset">Reset</button>
+                  <button class="btn btn-custom right" type="submit" [disabled]="!employeeForm.valid" id="Submit">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div id="sideline" class="col s12">
+              <table class="responsive-table">
+                  <thead>
+                    <tr>
+                      <th style="color: green">Name</th>
+                      <th style="color: green">Position</th>
+                      <th style="color: green">Office</th>
+                      <th style="color: green">Department</th>
+                      <th style="color: green"></th>
+                    </tr>
+                  </thead>
+                  <tr *ngFor="let emp of employeeService.employees">
+                    <td>{{emp.name}}</td>
+                    <td>{{emp.position}}</td>
+                    <td>{{emp.office}}</td>
+                    <td>{{emp.department}}</td>
+                    <td>
+                        <a class="action-btn" (click)="onEdit(emp)">
+                          <i class="material-icons" id="edit">edit</i>
+                        </a>
+                        <a class="action-btn" (click)="onDelete(emp._id,employeeForm)">
+                          <i class="material-icons" id="delete">delete</i>
+                        </a>
+                      </td>
+                  </tr>
+                </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
